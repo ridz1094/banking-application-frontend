@@ -27,7 +27,7 @@ const axios = require('axios');
 
 window.axios = axios.create({
   // baseURL: "http://localhost:8080",
-  baseURL: "https://bankingapi-env.eba-h3kss9ar.us-east-1.elasticbeanstalk.com",
+  baseURL: "https://apiservice-653459351.us-east-1.elb.amazonaws.com/bankingapi",
   crossDomain: true
 });
 
