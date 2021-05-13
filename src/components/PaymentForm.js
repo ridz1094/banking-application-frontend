@@ -43,7 +43,8 @@ class Payment extends Component {
             "amount": 100,
             "transaction_date" : "2007-12-03T10:15:30+01:00",
             "to_account" : this.state.toaccount,
-            "from_account" : this.state.fromaccount
+            "from_account" : this.state.fromaccount,
+            "frequency" : this.state.frequency
         }).then(function (response) {
             // this.setState({isEdit: false});
             window.location.href = '/';
@@ -100,6 +101,20 @@ class Payment extends Component {
                                     <option value="Electricity">Electricity</option>
                                     <option value="Internet">Internet</option>
                                     <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <label class="label">Frequency</label>
+                            <div class="control">
+                                <select name="frequency" id="frequency" onChange={this.handleInputChange}>
+                                <option value="Select Frequency">Default</option>
+                                    <option value="Once">Once</option>
+                                    <option value="Weekly">Weekly</option>
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="Yearly">Yearly</option>
                                 </select>
                             </div>
                         </div>
