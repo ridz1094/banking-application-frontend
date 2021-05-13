@@ -39,27 +39,17 @@ const NavBar =  () => {
     });
 
   const getUserInfo = (user) => {
-    if (user) {
-      let result = false;
-
-      window.axios.get('/users/' + user.email).then((response)=>{
-        if (response.data.role == "ADMIN") {
-          result = true;
-        }
-      }).catch(function (error) {
-        // handle error
-        console.log(error);
-        result = false;
-      })
-      
-      return result;
-    } else {
-      console.log("in else");
+    if(user && user.email == "admin@g.com"){
+      return true;
+    }else{
       return false;
     }
   };
-  let isAdmin =  getUserInfo(user);
-  console.log(isAdmin);
+  // let isAdmin =  getUserInfo(user);
+
+  // console.log(isAdmin);
+
+  const isAdmin = getUserInfo(user)
 
   return  (
     <div className="nav-container">
@@ -80,7 +70,7 @@ const NavBar =  () => {
                 </NavLink>
               </NavItem>
 
-              {isAuthenticated && (<NavItem>
+              {isAuthenticated && !isAdmin && (<NavItem>
                 <NavLink
                   tag={RouterNavLink}
                   to={{
@@ -96,7 +86,7 @@ const NavBar =  () => {
 
               )}
 
-              {isAuthenticated && (<NavItem>
+              {isAuthenticated && !isAdmin && (<NavItem>
                 <NavLink
                   tag={RouterNavLink}
                   to="/transfer"
@@ -107,7 +97,7 @@ const NavBar =  () => {
                 </NavLink>
               </NavItem>
               )}
-              {isAuthenticated && (<NavItem>
+              {isAuthenticated && !isAdmin &&(<NavItem>
                 <NavLink
                   tag={RouterNavLink}
                   to="/payment"
@@ -120,7 +110,7 @@ const NavBar =  () => {
               
               )}
 
-              {isAuthenticated && (<NavItem>
+              {isAuthenticated && isAdmin &&(<NavItem>
                 <NavLink
                   tag={RouterNavLink}
                   to="/refund"

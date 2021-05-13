@@ -40,7 +40,7 @@ class Payment extends Component {
     createTransaction() {
         window.axios.post('/billpayment/'+this.state.email, {
             "biller_type": this.state.billertype,
-            "amount": 100,
+            "amount": this.state.amount,
             "transaction_date" : "2007-12-03T10:15:30+01:00",
             "to_account" : this.state.toaccount,
             "from_account" : this.state.fromaccount,

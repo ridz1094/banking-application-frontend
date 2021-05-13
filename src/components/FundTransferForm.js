@@ -115,7 +115,7 @@ class FundTransferForm extends Component {
                             <label class="label">Frequency</label>
                             <div class="control">
                                 <select name="frequency" id="frequency" onChange={this.handleInputChange}>
-                                <option value="Select Frequency">Default</option>
+                                    <option value="Select Frequency">Default</option>
                                     <option value="Once">Once</option>
                                     <option value="Weekly">Weekly</option>
                                     <option value="Monthly">Monthly</option>
