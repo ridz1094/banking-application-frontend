@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
 import FundTransfer from "./views/FundTransfer";
+import Payment from "./views/Payment";
 import CreateUser from "./views/CreateUser";
 import Account from "./views/Account";
 import Transaction from "./views/Transaction";
@@ -65,6 +66,7 @@ const App = () => {
             <Route path="/account" component={Account} />
             <Route path="/transaction" component={Transaction} />
             <Route path="/transfer" component={FundTransfer}/>
+            <Route path="/payment" component={Payment}/>
             <Route path="/createAccount" component={CreateAccount}/>
             <Route path="/refund" component={Refund}/>
           </Switch>

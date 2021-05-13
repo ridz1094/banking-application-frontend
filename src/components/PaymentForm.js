@@ -27,7 +27,7 @@ class Payment extends Component {
 
 
     getUser(currentComponent) {
-        axios.get('http://localhost:8080/users/' + currentComponent.state.email).then(function (response) {
+        window.axios.get('/users/' + currentComponent.state.email).then(function (response) {
             // handle success
             currentComponent.setState(response.data);
         })
@@ -38,38 +38,19 @@ class Payment extends Component {
     }
 
     createTransaction() {
-        if (this.state.frequency == "Once") {
-            axios.post('http://localhost:8080/transactions/' + this.state.email, {
-                "transaction_type": "Debit",
-                "amount": this.state.amount,
-                "transaction_date": "2007-12-03T10:15:30+01:00",
-                "to_account": this.state.toaccount,
-                "from_account": this.state.fromaccount,
-                "transaction_status": "Completed"
-            }).then(function (response) {
-                // this.setState({isEdit: false});
-                //window.location.href = '/Profile';
-            })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
-        else {
-            axios.post('http://localhost:8080/recurringpayments/' + this.state.email, {
-                "transaction_type": "Debit",
-                "amount": this.state.amount,
-                "transaction_date": "2007-12-03T10:15:30+01:00",
-                "to_account": this.state.toaccount,
-                "from_account": this.state.fromaccount,
-                "transaction_frequency": this.state.frequency
-            }).then(function (response) {
-                // this.setState({isEdit: false});
-                //window.location.href = '/Profile';
-            })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
+        window.axios.post('/billpayment/'+this.state.email, {
+            "biller_type": this.state.billertype,
+            "amount": 100,
+            "transaction_date" : "2007-12-03T10:15:30+01:00",
+            "to_account" : this.state.toaccount,
+            "from_account" : this.state.fromaccount
+        }).then(function (response) {
+            // this.setState({isEdit: false});
+            window.location.href = '/';
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
 
@@ -112,21 +93,13 @@ class Payment extends Component {
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <label class="label">Biller ID</label>
+                            <label class="label">Biller Type</label>
                             <div class="control">
-                                <input name="amount" class="input" type="text" placeholder="Biller ID" value={this.state.billerid} onChange={this.handleInputChange} />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="columns">
-                        <div class="column">
-                            <label class="label">Frequency</label>
-                            <div class="control">
-                                <select name="frequency" id="frequency" onChange={this.handleInputChange}>
-                                    <option value="Once">Once</option>
-                                    <option value="Weekly">Weekly</option>
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="Yearly">Yearly</option>
+                                <select name="billertype" id="Biller Type" onChange={this.handleInputChange}>
+                                    <option value="Water">Water</option>
+                                    <option value="Electricity">Electricity</option>
+                                    <option value="Internet">Internet</option>
+                                    <option value="Others">Others</option>
                                 </select>
                             </div>
                         </div>
