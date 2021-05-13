@@ -314,67 +314,6 @@ class UserProfileForm extends Component {
                 }
                 
          </div> 
-            // : null }
-
-
-            // ------------------
-
-            // <div class="container">
-            // <div class="columns">
-            // <div class="column">
-            //     <label class="label">First Name: </label>
-            //     <div>{this.state.user.firstName}</div>
-            // </div>
-            // <div class="column">
-            //     <label class="label">Last Name: </label>
-            //     <div>{this.state.user.lastName}</div>
-            // </div>
-            // </div>
-            // <div class="columns">
-            // <div class="column">
-            //     <label class="label">Email Id: </label>
-            //     <div>{this.state.user.email}</div>
-            // </div>
-
-            // <div class="column">
-            //     <label class="label">Mobile No: </label>
-            //     <div>{this.state.user.mobileNumber}</div>
-            // </div>
-            // </div>
-            // <div class="columns">
-            // <div class="column">
-            //     <label class="label">Identity No: 
-            //     <div>{this.state.user.identity_no}</div></label>
-            // </div>
-
-            // <div class="column">
-            //     <label class="label">Date Of Birth: </label>
-            //     <div>{this.state.user.dob}</div>
-            // </div>
-            // </div>
-            // <div class="columns">
-            // <div class="column">
-            //     <label class="label">Address: </label>
-            //     <div>{this.state.user.address}</div>
-            // </div>
-            // </div>
-            // <div class="columns">
-            // <div class="column">
-            //     <label class="label">State: </label>
-            //     <div>{this.state.user.state}</div>
-            // </div>
-
-            // <div class="column">
-            //     <label class="label">Zip Code:</label>
-            //     <div>{this.state.user.zipCode}</div>
-            // </div>
-            // </div>
-            // <div class="center">
-            // <div class="control">
-            //     <button class="button is-primary" onClick={this.editUser}>Edit</button>
-            // </div>
-            // </div>
-            // </div>
         );
     }
 }

@@ -11,6 +11,8 @@ import FundTransfer from "./views/FundTransfer";
 import CreateUser from "./views/CreateUser";
 import Account from "./views/Account";
 import Transaction from "./views/Transaction";
+import CreateAccount from "./components/CreateAccount";
+import Refund from "./views/Refund";
 import ExternalApi from "./views/ExternalApi";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./utils/history";
@@ -26,7 +28,14 @@ initFontAwesome();
 const axios = require('axios');
 
 window.axios = axios.create({
+  // Local host URL.
   // baseURL: "http://localhost:8080",
+
+  // Individual EC2 Server URLs.
+  // baseURL: "http://3.87.235.117:8080/bankingapi",
+  // baseURL: "http://54.226.31.254:8080/bankingapi",
+  
+  // AWS Load balances URL.
   baseURL: "https://apiservice-653459351.us-east-1.elb.amazonaws.com/bankingapi",
   crossDomain: true
 });
@@ -42,6 +51,8 @@ const App = () => {
     return <Loading />;
   }
 
+
+
   return (
     <Router history={history}>
       <div id="app" className="d-flex flex-column h-100">
@@ -54,6 +65,8 @@ const App = () => {
             <Route path="/account" component={Account} />
             <Route path="/transaction" component={Transaction} />
             <Route path="/transfer" component={FundTransfer}/>
+            <Route path="/createAccount" component={CreateAccount}/>
+            <Route path="/refund" component={Refund}/>
           </Switch>
         </Container>
         <Footer />

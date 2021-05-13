@@ -89,6 +89,8 @@ class TransactionView extends Component {
     render() {
         return (
             <div>
+                 { this.state.rowsTransactions && this.state.rowsTransactions.length > 0 ? 
+                 <div>
                 <div class="field">
                     <div class="control has-icons-left">
                         <span class="icon is-small is-left">
@@ -113,6 +115,12 @@ class TransactionView extends Component {
                         {this.state.rowsTransactions}
                     </tbody>
                 </table>
+                </div>
+                :
+                <div>
+                    No Transaction Records Found
+                    </div>
+                    }
             </div>
         )
     };

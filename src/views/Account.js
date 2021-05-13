@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 
 import Highlight from "../components/Highlight";
@@ -10,25 +10,49 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import UserProfileForm from "../components/UserProfileForm";
-import TransactionComponent from "./Transaction";
+import AccountView from "../components/AccountView";
 
-export const AccountComponent = () => {
+
+// class Account extends Component {
+//   constructor(props) {
+//     super(props);
+//   }
+//   render() {
+//     return (
+//       <Container className="mb-5">
+//         <AccountView email={user.email}></AccountView>
+//         {/* <TransactionComponent accountNumber = '137813372'> </TransactionComponent> */}
+//         <Link
+//           to={{
+//             pathname: "/transaction",
+//             accountNumber: 137813372
+//           }}> View Transaction</Link>
+
+//         <Link
+//           to={{
+//             pathname: "/createAccount",
+//             accountNumber: 137813372
+//           }}> Create Account</Link>
+//       </Container>
+//     );
+//   };
+// }
+// export default Account;
+
+export const Account = () => {
   const { user } = useAuth0();
-
+  const urlParams = new URLSearchParams(window.location.search);
+  const emailUser = urlParams.get('email');
+  
   return (
     <Container className="mb-5">
-      {/* <UserProfileForm email={user.email}></UserProfileForm> */}
-      {/* <TransactionComponent accountNumber = '137813372'> </TransactionComponent> */}
-      <Link
-      to={{
-        pathname: "/transaction",
-        accountNumber: 137813372
-      }}> View Transaction</Link>
+      <AccountView email={user ? user.email : emailUser}></AccountView>
     </Container>
   );
 };
 
-export default withAuthenticationRequired(AccountComponent, {
+export default 
+// Account;
+withAuthenticationRequired(Account, {
   onRedirecting: () => <Loading />,
 });

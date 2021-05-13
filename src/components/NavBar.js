@@ -20,7 +20,7 @@ import {
 
 import { useAuth0 } from "@auth0/auth0-react";
 
-const NavBar = () => {
+const NavBar =  () => {
   const [isOpen, setIsOpen] = useState(false);
   const {
     user,
@@ -28,7 +28,8 @@ const NavBar = () => {
     loginWithRedirect,
     logout,
   } = useAuth0();
- 
+
+
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -37,7 +38,30 @@ const NavBar = () => {
       returnTo: window.location.origin,
     });
 
-  return (
+  const getUserInfo = (user) => {
+    if (user) {
+      let result = false;
+
+      window.axios.get('/users/' + user.email).then((response)=>{
+        if (response.data.role == "ADMIN") {
+          result = true;
+        }
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+        result = false;
+      })
+      
+      return result;
+    } else {
+      console.log("in else");
+      return false;
+    }
+  };
+  let isAdmin =  getUserInfo(user);
+  console.log(isAdmin);
+
+  return  (
     <div className="nav-container">
       <Navbar color="light" light expand="md">
         <Container>
@@ -50,7 +74,7 @@ const NavBar = () => {
                   tag={RouterNavLink}
                   to="/"
                   exact
-                  // activeClassName="router-link-exact-active"
+                // activeClassName="router-link-exact-active"
                 >
                   Home
                 </NavLink>
@@ -59,28 +83,43 @@ const NavBar = () => {
               {isAuthenticated && (<NavItem>
                 <NavLink
                   tag={RouterNavLink}
-                  to="/account"
+                  to={{
+                    pathname: "/account",
+                    email: user.email
+                  }}
                   exact
-                  // activeClassName="router-link-exact-active"
+                // activeClassName="router-link-exact-active"
                 >
                   Account
                 </NavLink>
               </NavItem>
-              
+
               )}
 
-                {isAuthenticated && (<NavItem>
+              {isAuthenticated && (<NavItem>
                 <NavLink
                   tag={RouterNavLink}
                   to="/transfer"
                   exact
-                  // activeClassName="router-link-exact-active"
+                // activeClassName="router-link-exact-active"
                 >
                   Fund Transfer
                 </NavLink>
               </NavItem>
               )}
-              
+
+              {isAuthenticated && (<NavItem>
+                <NavLink
+                  tag={RouterNavLink}
+                  to="/refund"
+                  exact
+                // activeClassName="router-link-exact-active"
+                >
+                  Refund
+                </NavLink>
+              </NavItem>
+              )}
+
 
               {/* {isAuthenticated && (
                 <NavItem>
